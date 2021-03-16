@@ -15,7 +15,7 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
 
 > You don't need to know how to code or read any code to use this script. It would be preferrable, as stated above, but the only thing you need to know is how to copy & paste.
 
-1. **Copy the script** `(Ctrl+C)` into your clipboard from here: [audible wishlist scraper.js](https://raw.githubusercontent.com/joonaspaakko/audible-library-cover-downloader/main/audible-library-cover-downloader.js)
+1. **Copy the script** `(Ctrl+C)` into your clipboard from here: [audible-library-cover-downloader.js](https://raw.githubusercontent.com/joonaspaakko/audible-library-cover-downloader/main/audible-library-cover-downloader.js)
 2. **Go to your Audible library page.**
 3. **Open your browser's developer tools console.** 
     - The easy way is to right click anywhere on a website, choose `Inspect element` from the context menu and then click the `Console` tab.
@@ -26,6 +26,12 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
     - The web page doesn't really have any fallbacks if you don't have plenty of covers to fill the screen and might not work as intended... Though you may be able to change its settings in the `index.html` file to fit your needs better.
 
 ## Screensaver web page
+
+Example using covers from my library: https://joonaspaakko.github.io/audible-library-cover-downloader/
+
+- It may take a hot minute to load for the first time, because all my covers take up about `25MB` (462 covers).
+- The covers will over time get randomly switched with another cover
+- If you're not super scared of looking at code, you may be able to change the settings to something more fitting for your usecase. It's all in the `index.hhtml` file.
 
 I wasn't planning on making this, but as I was testing different screensaver options on Mac, I came to the realization that they are all made to show photos, where it doesn't usually matter if something is cropped off, and that doesn't really look so great with these cover images.
 
