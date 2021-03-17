@@ -51,10 +51,10 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
 
 All devices do it a bit differently, but the gist of it is that if you're going to be using any native screensaver or a slideshow, you just unpack the `.zip` file and you'll find the covers in a folder called `covers`. You can ignore all of the other files in there.
 
-> I'm not a 100% sure but I think most screensavers and slideshows tend to be built for photos where it doesn't matter much if something gets cropped off, however these covers in my opinion looked kinda silly when that happens. That's why I added the `Screensaver web page` in the `.zip` file, as a sort of a fallback. More on that in the next heading.
+> I'm not a 100% sure but I think most screensavers and slideshows tend to be built for photos where it doesn't matter much if something gets cropped off, however these covers in my opinion looked kinda silly when that happens. That's why I added the `Screensaver web page` in the `.zip` file, as a sort of a fallback, just in case no screensaver does a good job displaying them. More on that in the next heading.
 
 - **On a desktop computer** you would just set that `covers` folder as the source folder for the screensaver and that's it.
-  - You can also use the `Screensaver web page` on a mobile device. More on that in the next heading.
+  - You can also use the `Screensaver web page` on a desktop computer. More on that in the next heading.
 
 - **On a mobile device** (preferrably an old otherwise unusable tablet) you probably first have to transfer over the files with a cable and then select an album of of images you've created from the covers as the source for a slideshow. I'm not super sure if Android has one built in, but there is one in the IOS Photos app. In either case, there may be better 3rd party apps.
     - You can also use the `Screensaver web page` on a mobile device, but you probably have to upload it as a website. to make it work.  It may be possible on Android to use local files. More on that in the next heading.
