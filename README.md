@@ -34,9 +34,11 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
 &emsp; <!-- omit in toc -->
 
 
+- [Display the covers using a built-in screensaver or slideshow (computer, mobile device, digital photo frame)](#display-the-covers-using-a-built-in-screensaver-or-slideshow-computer-mobile-device-digital-photo-frame)
 - [Screensaver web page](#screensaver-web-page)
-  - [Screensaver Usage (Mac)](#screensaver-usage-mac)
-  - [Screensaver Usage (Mobile)](#screensaver-usage-mobile)
+  - [Screensaver web page - Usage (Mac)](#screensaver-web-page---usage-mac)
+  - [Screensaver web page - Usage (Windows)](#screensaver-web-page---usage-windows)
+  - [Screensaver web page - Usage (Mobile: IOS, Android)](#screensaver-web-page---usage-mobile-ios-android)
   - [Changing grid settings](#changing-grid-settings)
   - [Uploading your cover screensaver to Github as a website](#uploading-your-cover-screensaver-to-github-as-a-website)
 
@@ -45,15 +47,34 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
 ----
 &emsp; <!-- omit in toc -->
 
+## Display the covers using a built-in screensaver or slideshow (computer, mobile device, digital photo frame)
+
+All devices do it a bit differently, but the gist of it is that if you're going to be using any native screensaver or a slideshow, you just unpack the `.zip` file and you'll find the covers in a folder called `covers`. You can ignore all of the other files in there.
+
+> I'm not a 100% sure but I think most screensavers and slideshows tend to be built for photos where it doesn't matter much if something gets cropped off, however these covers in my opinion looked kinda silly when that happens. That's why I added the `Screensaver web page` in the `.zip` file, as a sort of a fallback. More on that in the next heading.
+
+- **On a desktop computer** you would just set that `covers` folder as the source folder for the screensaver and that's it.
+  - You can also use the `Screensaver web page` on a mobile device. More on that in the next heading.
+
+- **On a mobile device** (preferrably an old otherwise unusable tablet) you probably first have to transfer over the files with a cable and then select an album of of images you've created from the covers as the source for a slideshow. I'm not super sure if Android has one built in, but there is one in the IOS Photos app. In either case, there may be better 3rd party apps.
+    - You can also use the `Screensaver web page` on a mobile device, but you probably have to upload it as a website. to make it work.  It may be possible on Android to use local files. More on that in the next heading.
+
+- **With a digital photo frame** you likely have to put the covers in an SD-card and let the photo frame do its thing.
+
+&emsp; <!-- omit in toc -->
+----
+&emsp; <!-- omit in toc -->
 
 ## Screensaver web page
 
-Originally this was just supposed to download the covers and nothing else, but as I was testing different screensaver options on Mac, I came to the realization that they are all made to show photos where it usually doesn't matter if something is cropped off, and that doesn't really look so great with these cover images, so I decided to add this little screensaver web page scaffolding around it. You can completely ignore it and go straight for the cover files if you want.
+Originally this was just supposed to download the covers and nothing else, but as I was testing different screensaver options on Mac I came to the realization that they are all made to show photos where it usually doesn't matter if something is cropped off, and that doesn't really look so great with these cover images, so I decided to add this little `screensaver web page` in every `.zip` file the script outputs as a fallback. To be clear, even though technically it is a _web page_, it's not necessary to upload it online. Not on a desktop computer anyways. That said, it might be hard or impossible to do it on a mobile device without uploading it online.
 
-Example using covers from my library: [https://joonaspaakko.github.io/audible-library-cover-downloader](https://joonaspaakko.github.io/audible-library-cover-downloader).
+> I'm pretty sure no digital photo frame would support this, but I've never played around with one, so I have no idea what kind functionality they have. It would have to support `.html` files or show a website, which actually sounds like could be possible at least if there are some digital signate oriented screens like that, but you'd still likely have to upload the files online for that to work.
+
+[Example page using covers from my library](https://joonaspaakko.github.io/audible-library-cover-downloader), that I've uploaded to github. It's only necessary to upload it online if you want to show it on a mobile device. More on that below under mobile usage.
 
 - It may take a hot minute to load for the first time, because all my covers take up about `25MB` (462 covers).
-- The visible covers will over time get randomly switched with another cover
+- When you download your covers and unpack the `.zip` file, all the extra files in the root are related to the `screensaver web page`. You can just open the `index.html` in your browser to view it.
 - The initial covers are shuffled on page load. So if you keep refreshing the page, the covers will be different every time.
 - If you want to change the amount of covers on the screen, you can do this by editing a tiny bit of code at the bottom of the `index.html` file. More on that below.
 
@@ -61,19 +82,41 @@ Example using covers from my library: [https://joonaspaakko.github.io/audible-li
 
 &emsp; <!-- omit in toc -->
 
-### Screensaver Usage (Mac)
+### Screensaver web page - Usage (Mac)
 
-On Mac you can use [webviewscreensaver: Mac OS X Screen Saver powered by a Web View](https://github.com/liquidx/webviewscreensaver) to show just about any website, but you can also paste in the full path to the local folder. In my case I set the screensaver `URL` to `/Users/joonaspaakko/Documents/audible-library-covers/index.html`. Note: double clicking `URL` and/or `Seconds` fields to edit them might not work. Try pressing `Enter` and/or `Tab`. Then just close it.
+On Mac you can use [webviewscreensaver: Mac OS X Screen Saver powered by a Web View](https://github.com/liquidx/webviewscreensaver) to show just about any website, but in this case you don't have to upload it online. You can also paste in the full path to the local folder. In my case I unpacked the `.zip` file and set the screensaver `URL` as `/Users/joonaspaakko/Documents/audible-library-covers/index.html`. 
 
-> Note: it may take a while for the page to load when opening for the first time, if you have a huge library.
+Note: double clicking `URL` and/or `Seconds` fields to edit them might not work. Try pressing `Enter` and/or `Tab`. Then just close it.
+
 
 &emsp; <!-- omit in toc -->
 
-### Screensaver Usage (Mobile)
+### Screensaver web page - Usage (Windows)
 
-If you have an old tablet that's not really in use anymore... or maybe even a big phone, you can disable screen auto lock and open the website in fullscreen. You should be able to fullscreen it by saving the icon in your home screen and just opening it. If this doesn't work, some browsers have a fullscreen more built in.
+On Windows I can give you two options to use the included `screensaver web page` as a screensaver locally.
 
-> Note: it may take a while for the page to load when opening for the first time, if you have a huge library.
+I haven't tried either of these, but given how robust Wallpaper Engine is and how clear the documentation is about it, I have no doubt it can do it with no issues.
+
+- [Wallpaper Engine](https://www.wallpaperengine.io/) (~$4) - Can also be bought through steam. 
+    - The [super short video here](https://docs.wallpaperengine.io/en/web/first/gettingstarted.html#creating-a-web-wallpaper) tells you everything you should need to know.
+- [Web Page Screensaver](https://github.com/cwc/web-page-screensaver) (free)
+    - You can download it from the [releases page](https://github.com/cwc/web-page-screensaver/releases).
+    - It's not been worked on for years now, so who knows if it works, but I would think it's simple enough of a thing that it probably does. There are bunch of forks of it, so there is a chance there is a more up to date version maintained by someone else.
+    - I don't know if you can set local `.html` files as a screensaver in it, but my hunch says yes.
+    
+&emsp; <!-- omit in toc -->
+
+### Screensaver web page - Usage (Mobile: IOS, Android)
+
+If you have an old tablet that's not really in use anymore or maybe even a big phone, you can also use the `screensaver web page` on that, but you likely have to upload it online. I think you might be able to make due with locally saved files on Android, but on IOS you definitely have to upload it. 
+
+1. You probably will want to disable screen auto-lock or at least make sure it doesn't go to sleep in the next 30 seconds or otherwise there's no point in it.
+2. Open the website in fullscreen
+    - You should be able to fullscreen on both IOS (Safari) and Android (Chrome) by saving the icon in your home screen through the corner menu or the share button. 
+    - Then just click the icon and it knows to open as a sort of stand-alone fullscreen browser window
+    - If this doesn't work, some 3rd party browsers have a fullscreen more built in, which would do just as well.
+
+> Note: it may take a while for the page to load, if you have a huge library.
 
 &emsp; <!-- omit in toc -->
 
