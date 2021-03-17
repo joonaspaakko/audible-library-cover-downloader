@@ -1,4 +1,21 @@
-// V.1.0.
+// V.1.1.
+
+// CHANGELOG:
+
+// v.1.1.
+// - No changes to scraping, just to the screensaver web page 
+// - Row height is calculated automatically to make sure there are always enough covers to fill the screen vertically.
+//   Before this I just set grid rotator's row length to something that would in most cases fill the screen, which 
+//   would in some cases make it so you'd have almost a full screen height worth of covers animating outside of 
+//   the viewport that you'd never get to see. That would also make it so the animating was more sporadic, 
+//   because it didn't all happen inside the viewport.
+//
+// - Covers are shuffled on every page load, where as before it would rotate in random, but the initial covers were 
+//   always the same and that got a little boring.
+
+
+// v.1.0.
+// - First version
 (function() {
   
   String.prototype.trimAll = function(){
@@ -146,7 +163,7 @@
     var coversFolder = zip.folder("covers");
     
     var coversArray = _.map( books, function( book ) {
-      return '<li><a href="#"><img src="'+ ('covers/' + book.title + '.jpg') +'"/></a></li>';
+      return '          <li><a href="#"><img src="'+ ('covers/' + book.title + '.jpg') +'"/></a></li>';
     });
     zip.file("index.html", indexHTML( _.shuffle(coversArray).join('\n') ) );
     
@@ -246,7 +263,7 @@
       
       <div id="ri-grid" class="ri-grid ri-grid-size-3">
         <ul>
-          ${ covers }
+${ covers }
         </ul>
       </div>
       
@@ -257,32 +274,64 @@
       <script>
         $(function() {
           
-          $( '#ri-grid' ).gridrotator( {
-            rows : 13,
-            columns : 8,
-            maxStep : 2,
-            interval : 2000,
-            w1024 : {
-              rows : 10,
-              columns : 7
+          $.fn.shuffle = function() {
+      
+              var allElems = this.get(),
+                  getRandom = function(max) {
+                      return Math.floor(Math.random() * max);
+                  },
+                  shuffled = $.map(allElems, function(){
+                      var random = getRandom(allElems.length),
+                          randEl = $(allElems[random]).clone(true)[0];
+                      allElems.splice(random, 1);
+                      return randEl;
+                });
+      
+              this.each(function(i){
+                  $(this).replaceWith($(shuffled[i]));
+              });
+      
+              return $(shuffled);
+      
+          };
+          
+          $('#ri-grid').shuffle();
+          
+          // Note, the covers are 500x500px, so if they happen to end up bigger than that due to 
+          // the settings, they may start looking pixelated/blurry.
+          
+          // https://tympanus.net/codrops/2012/08/02/animated-responsive-image-grid/
+          $('#ri-grid').gridrotator({
+            columns: 8,     // screen width over 1550px = 8 covers side by side
+            w1550: {
+              columns: 6, // screen width less than 1550px = 6 covers side by side
             },
-            w768 : {
-              rows : 8,
-              columns : 5
+            w1300: {
+              columns: 5, // screen width less than 1300px = 5 covers side by side
             },
-            w480 : {
-              rows : 8,
-              columns : 4
+            w950: {
+              columns: 3, // screen width less than 950px = 4 covers side by side
             },
-            w320 : {
-              rows : 7,
-              columns : 4
+            w600: {
+              columns: 2, // screen width less than 600px = 2 covers side by side
             },
-            w240 : {
-              rows : 7,
-              columns : 3
-            },
-          } );
+            interval: 3000,
+            // animation type
+            // showHide || fadeInOut || slideLeft || 
+            // slideRight || slideTop || slideBottom || 
+            // rotateLeft || rotateRight || rotateTop || 
+            // rotateBottom || scale || rotate3d || 
+            // rotateLeftScale || rotateRightScale || 
+            // rotateTopScale || rotateBottomScale || random
+            animType: 'random',
+            // animation speed
+            animSpeed: 900,
+            // step: number of items that are replaced at the same time
+            // random || [some number]
+            // note: for performance issues, the number should not be > options.maxStep
+            step   : 'random',
+            maxStep: 3,
+          });
         
         });
       </script>
@@ -412,11 +461,6 @@
         rows : 4,
         // number of columns
         columns : 10,
-        w1024 : { rows : 3, columns : 8 },
-        w768 : {rows : 3,columns : 7 },
-        w480 : {rows : 3,columns : 5 },
-        w320 : {rows : 2,columns : 4 },
-        w240 : {rows : 2,columns : 3 },
         // step: number of items that are replaced at the same time
         // random || [some number]
         // note: for performance issues, the number "can't" be > options.maxStep
@@ -692,14 +736,21 @@
     
           // we will choose the number of rows/columns according to the container's width and the values set in the plugin options
           switch( true ) {
-            case ( c_w < 240 ) : this.rows = this.options.w240.rows; this.columns = this.options.w240.columns; break;
-            case ( c_w < 320 ) : this.rows = this.options.w320.rows; this.columns = this.options.w320.columns; break;
-            case ( c_w < 480 ) : this.rows = this.options.w480.rows; this.columns = this.options.w480.columns; break;
-            case ( c_w < 768 ) : this.rows = this.options.w768.rows; this.columns = this.options.w768.columns; break;
-            case ( c_w < 1024 ) : this.rows = this.options.w1024.rows; this.columns = this.options.w1024.columns; break;
-            default : this.rows = this.options.rows; this.columns = this.options.columns; break;
+            case ( c_w < 600  ) : this.columns = this.options.w600  ? this.options.w600.columns  : this.options.columns; break;
+            case ( c_w < 950  ) : this.columns = this.options.w950  ? this.options.w950.columns  : this.options.columns; break;
+            case ( c_w < 1200 ) : this.columns = this.options.w1300 ? this.options.w1300.columns : this.options.columns; break;
+            case ( c_w < 1550 ) : this.columns = this.options.w1550 ? this.options.w1550.columns : this.options.columns; break;
+            default : this.columns = this.options.columns; break;
           }
-    
+          
+          var calculateRows = function( cols ) {
+            var coverWidth = ($(window).width()/cols);
+            var rows = Math.ceil( $(window).height() / coverWidth );
+            return rows;
+          };
+          
+          this.rows = calculateRows( this.columns );
+          
           this.showTotal = this.rows * this.columns;
     
         },
