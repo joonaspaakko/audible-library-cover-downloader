@@ -295,7 +295,7 @@ ${ covers }
       
           };
           
-          $('#ri-grid').shuffle();
+          $('#ri-grid > ul > li').shuffle();
           
           // Note, the covers are 500x500px, so if they happen to end up bigger than that due to 
           // the settings, they may start looking pixelated/blurry.
