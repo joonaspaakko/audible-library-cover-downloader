@@ -117,11 +117,6 @@
         rows : 4,
         // number of columns
         columns : 10,
-        w1024 : { rows : 3, columns : 8 },
-        w768 : {rows : 3,columns : 7 },
-        w480 : {rows : 3,columns : 5 },
-        w320 : {rows : 2,columns : 4 },
-        w240 : {rows : 2,columns : 3 },
         // step: number of items that are replaced at the same time
         // random || [some number]
         // note: for performance issues, the number "can't" be > options.maxStep
@@ -397,14 +392,21 @@
     
           // we will choose the number of rows/columns according to the container's width and the values set in the plugin options
           switch( true ) {
-            case ( c_w < 240 ) : this.rows = this.options.w240.rows; this.columns = this.options.w240.columns; break;
-            case ( c_w < 320 ) : this.rows = this.options.w320.rows; this.columns = this.options.w320.columns; break;
-            case ( c_w < 480 ) : this.rows = this.options.w480.rows; this.columns = this.options.w480.columns; break;
-            case ( c_w < 768 ) : this.rows = this.options.w768.rows; this.columns = this.options.w768.columns; break;
-            case ( c_w < 1024 ) : this.rows = this.options.w1024.rows; this.columns = this.options.w1024.columns; break;
-            default : this.rows = this.options.rows; this.columns = this.options.columns; break;
+            case ( c_w < 600  ) : this.columns = this.options.w600  ? this.options.w600.columns  : this.options.columns; break;
+            case ( c_w < 950  ) : this.columns = this.options.w950  ? this.options.w950.columns  : this.options.columns; break;
+            case ( c_w < 1200 ) : this.columns = this.options.w1300 ? this.options.w1300.columns : this.options.columns; break;
+            case ( c_w < 1550 ) : this.columns = this.options.w1550 ? this.options.w1550.columns : this.options.columns; break;
+            default : this.columns = this.options.columns; break;
           }
-    
+          
+          var calculateRows = function( cols ) {
+            var coverWidth = ($(window).width()/cols);
+            var rows = Math.ceil( $(window).height() / coverWidth );
+            return rows;
+          };
+          
+          this.rows = calculateRows( this.columns );
+          
           this.showTotal = this.rows * this.columns;
     
         },
