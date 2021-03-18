@@ -287,6 +287,8 @@
       
     </head>
     <body>
+      
+      <div id="overlay"></div>
     
       <noscript>This gallery requires javascript to work!</noscript>
       
