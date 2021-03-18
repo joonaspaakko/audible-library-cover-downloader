@@ -11,9 +11,9 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
 
 > Firefox warning message in the console → Scam Warning: Take care when pasting things you don’t understand. This could allow attackers to steal your identity or take control of your computer. Please type ‘allow pasting’ below (no need to press enter) to allow pasting.
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 ----
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ## Usage <!-- omit in toc -->
 
@@ -29,9 +29,9 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
     - If you you only want the scover files, unpack the zip and check the `covers` folder.
     - The screensaver web page doesn't really have any fallbacks if you don't have plenty of covers to fill the screen and it might not work as intended without modifying the settings. More on that below. 
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 ----
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 
 - [Display the covers using a built-in screensaver or slideshow (computer, mobile device, digital photo frame)](#display-the-covers-using-a-built-in-screensaver-or-slideshow-computer-mobile-device-digital-photo-frame)
@@ -39,13 +39,13 @@ Use at your own risk. I have good intentions, but you shouldn't go copy pasting 
   - [Screensaver web page - Usage (Mac)](#screensaver-web-page---usage-mac)
   - [Screensaver web page - Usage (Windows)](#screensaver-web-page---usage-windows)
   - [Screensaver web page - Usage (Mobile: IOS, Android)](#screensaver-web-page---usage-mobile-ios-android)
-  - [Changing grid settings](#changing-grid-settings)
+  - [Customizing with URL params (changing grid size and other things)](#customizing-with-url-params-changing-grid-size-and-other-things)
   - [Uploading your cover screensaver to Github as a website](#uploading-your-cover-screensaver-to-github-as-a-website)
 
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 ----
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ## Display the covers using a built-in screensaver or slideshow (computer, mobile device, digital photo frame)
 
@@ -61,9 +61,9 @@ All devices do it a bit differently, but the gist of it is that if you're going 
 
 - **With a digital photo frame** you likely have to put the covers in an SD-card and let the photo frame do its thing.
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 ----
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ## Screensaver web page
 
@@ -80,7 +80,7 @@ Originally this was just supposed to download the covers and nothing else, but a
 
 > You can also try any built in screensavers or slideshow features on various platforms by just unpacking the zip file and pointing the image source folder to the `covers` folder. 
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ### Screensaver web page - Usage (Mac)
 
@@ -89,7 +89,7 @@ On Mac you can use [webviewscreensaver: Mac OS X Screen Saver powered by a Web V
 Note: double clicking `URL` and/or `Seconds` fields to edit them might not work. Try pressing `Enter` and/or `Tab`. Then just close it.
 
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ### Screensaver web page - Usage (Windows)
 
@@ -104,7 +104,7 @@ I haven't tried either of these, but given how robust Wallpaper Engine is and ho
     - It's not been worked on for years now, so who knows if it works, but I would think it's simple enough of a thing that it probably does. There are bunch of forks of it, so there is a chance there is a more up to date version maintained by someone else.
     - I don't know if you can set local `.html` files as a screensaver in it, but my hunch says yes.
     
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ### Screensaver web page - Usage (Mobile: IOS, Android)
 
@@ -118,60 +118,36 @@ If you have an old tablet that's not really in use anymore or maybe even a big p
 
 > Note: it may take a while for the page to load, if you have a huge library.
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
-### Changing grid settings
+### Customizing with URL params (changing grid size and other things)
 
-If you want to change the amount of covers on the screen, you can do this by editing a tiny bit of code at the bottom of the `index.html` file.
+URL parameters let you easily change some aspects of the grid on the fly just by editing the `URL` or a local `path`. 
 
-Here you can change how many covers you want to fit inside the screen horizontally. For example `column: 1` would be 1 cover and `column: 2` would be 2 coveres side by side. How many rows of covers you end up with depends on this `column` number and also the screen height.
-
-> If you don't want to set fallback column numbers for many different screen sizes, you can just set the one size you care about or even remove `w1550, w1300, w950, w600` and just set that one `columns` property.
-
+Url params (...and some example values):
 ```js
-$('#ri-grid').gridrotator({
-    columns: 8,     // screen width over 1550px = 8 covers side by side
-    w1550: {
-        columns: 6, // screen width less than 1550px = 6 covers side by side
-    },
-    w1300: {
-        columns: 5, // screen width less than 1300px = 5 covers side by side
-    },
-    w950: {
-        columns: 3, // screen width less than 950px = 4 covers side by side
-    },
-    w600: {
-        columns: 2, // screen width less than 600px = 2 covers side by side
-    },
-    interval: 3000,
-    // animation type
-    // showHide || fadeInOut || slideLeft || 
-    // slideRight || slideTop || slideBottom || 
-    // rotateLeft || rotateRight || rotateTop || 
-    // rotateBottom || scale || rotate3d || 
-    // rotateLeftScale || rotateRightScale || 
-    // rotateTopScale || rotateBottomScale || random
-    animType: 'random',
-    // animation speed
-    animSpeed: 900,
-    // step: number of items that are replaced at the same time
-    // random || [some number]
-    // note: for performance issues, the number should not be > options.maxStep
-    step   : 'random',
-    maxStep: 3,
-});
+cols=5
+overlay=true
+overlayColor=#991144
+overlayOpacity=.7
+filter=grayscale(100)blur(2px) // https://developer.mozilla.org/en-US/docs/Web/CSS/filter 
+verticalOffset=40
 ```
+> You always separate URL params from the rest of the URL (or a path) by a question mark `?`. Then each URL param is delimited using the ampersand `&`.
 
-&emsp; <!-- omit in toc -->
+For example, adding `?cols=15&filter=grayscale(80)` at the end of the url makes the grid have 15 covers side by side and tint it 80% towards grayscale: [https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80)](https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80))
+
+
+ &emsp; <!-- omit in toc -->
 ----
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 ### Uploading your cover screensaver to Github as a website
 
 Useful if you want to show it in a tablet that's connected to the internet. Otherwise you'd probably have to transfer the covers via cable or and SD-card and use the built in screensaver or slideshow feature, unless you can figure out a way to show a website from local files.
 
 <details><summary>Read more...</summary>
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 This is a fairly complex process if you've never used Github/Git to make repositories, but it is a free way to get your site on the internets, so there's that. The complexity comes mostly from how Git/Github works and what it's mainly for. **You don't need to touch any code**, it's just a matter of learning how it works and clicking your way through the process.
 
@@ -204,7 +180,7 @@ It might look like there’s just too many steps, but aside from making the GitH
 		- If you’re having hard time understanding the instructions above, you can find more comprehensive instructions [here](https://pages.github.com/). To get the right instructions just select `Project site` and `Start from scratch`. You can skip to step 4 in the Github article.
 4. When you've got all this done and the project repository is set as a website, you can share the address with anyone. And to be clear, they don't need a Github account to view the web page. **It may take a few minutes for the page to be online**, especially if you have tons of books.
 
-&emsp; <!-- omit in toc -->
+ &emsp; <!-- omit in toc -->
 
 #### What if I want to upload the web page again? <!-- omit in toc -->
 
