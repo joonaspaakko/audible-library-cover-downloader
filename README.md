@@ -130,7 +130,7 @@ cols=5
 overlay=true
 overlayColor=#991144
 overlayOpacity=.7
-filter=grayscale(100)blur(2px) // https://developer.mozilla.org/en-US/docs/Web/CSS/filter 
+filter=grayscale(100%)blur(2px) // https://developer.mozilla.org/en-US/docs/Web/CSS/filter 
 verticalOffset=40
 ```
 > You always separate URL params from the rest of the URL (or a path) by a question mark `?`. Then each URL param is delimited using the ampersand `&`.
