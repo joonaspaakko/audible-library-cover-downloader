@@ -135,7 +135,7 @@ verticalOffset=40
 ```
 > You always separate URL params from the rest of the URL (or a path) by a question mark `?`. Then each URL param is delimited using the ampersand `&`.
 
-For example, adding `?cols=15&filter=grayscale(80)` at the end of the url makes the grid have 15 covers side by side and tint it 80% towards grayscale: [https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80)](https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80))
+For example, adding `?cols=15&filter=grayscale(80%)` at the end of the url makes the grid have 15 covers side by side and tint it 80% towards grayscale: [https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80%)](https://joonaspaakko.github.io/audible-library-cover-downloader/?cols=15&filter=grayscale(80%))
 
 
  &emsp; <!-- omit in toc -->
